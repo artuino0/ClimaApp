@@ -1,0 +1,26 @@
+{
+  "name": "climaapp",
+  "version": "1.0.0",
+  "description": "Aplicacion para clima en termina",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artuino0/ClimaApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artuino0/ClimaApp/issues"
+  },
+  "homepage": "https://github.com/artuino0/ClimaApp#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "inquirer": "^9.1.1"
+  }
+}
