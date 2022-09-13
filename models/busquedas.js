@@ -1,4 +1,7 @@
 import axios from "axios";
+import * as dotenv from "dotenv";
+dotenv.config();
+
 export class Busquedas {
   historial = ["Tegucigalpa", "Madrid", "San Jose"];
 
@@ -7,10 +10,12 @@ export class Busquedas {
   }
 
   getParamsMapbox() {
+    console.log();
     return {
-      access_token: "",
+      access_token: process.env.MAPBOX_KEY,
       limit: 5,
       language: "en",
+      types: "place",
     };
   }
 
@@ -22,7 +27,12 @@ export class Busquedas {
       });
 
       const resp = await instance.get();
-      console.log(resp.data.features);
+      return resp.data.features.map((place) => ({
+        id: place.id,
+        place_name: place.place_name,
+        lng: place.center[0],
+        lat: place.center[1],
+      }));
     } catch (error) {
       return [];
     }

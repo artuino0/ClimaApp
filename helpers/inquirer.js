@@ -63,3 +63,29 @@ export const pausa = async () => {
   console.log("\n");
   await inquirer.prompt(question);
 };
+
+export const showCitiesList = async (places = []) => {
+  const choices = places.map((place, i) => {
+    const idx = `${i + 1}.`.green;
+    return {
+      value: place.id,
+      name: `${idx} ${place.place_name}`,
+    };
+  });
+  choices.unshift({
+    value: 0,
+    name: `${"0.".green} Exit`,
+  });
+
+  const question = [
+    {
+      type: "list",
+      name: "city",
+      message: "what city are you looking for?",
+      choices,
+    },
+  ];
+
+  const { city } = await inquirer.prompt(question);
+  return city;
+};

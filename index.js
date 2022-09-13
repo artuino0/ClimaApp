@@ -1,4 +1,9 @@
-import { inquirerMenu, leerInput, pausa } from "./helpers/inquirer.js";
+import {
+  inquirerMenu,
+  leerInput,
+  pausa,
+  showCitiesList,
+} from "./helpers/inquirer.js";
 import { Busquedas } from "./models/busquedas.js";
 
 const main = async () => {
@@ -10,7 +15,10 @@ const main = async () => {
     switch (opt) {
       case 1:
         const busqueda = await leerInput();
-        await buscador.getCities(busqueda);
+        const places = await buscador.getCities(busqueda);
+
+        const id = await showCitiesList(places);
+
         break;
     }
 
