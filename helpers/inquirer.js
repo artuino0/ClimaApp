@@ -10,15 +10,15 @@ const preguntas = [
     choices: [
       {
         value: 1,
-        name: `${"1.".green}Get weather by city`,
+        name: `${"1.".green} Get weather by city`,
       },
       {
         value: 2,
-        name: `${"2.".green}Search history`,
+        name: `${"2.".green} Search history`,
       },
       {
         value: 0,
-        name: `${"0.".green}Exit`,
+        name: `${"0.".green} Exit`,
       },
     ],
   },
@@ -31,4 +31,35 @@ export const inquirerMenu = async () => {
   console.log("========================".green);
   const { option } = await inquirer.prompt(preguntas);
   return option;
+};
+
+export const leerInput = async (menssage) => {
+  const question = [
+    {
+      type: "input",
+      name: "Keyword",
+      menssage,
+      validate(value) {
+        if (value.length === 0) {
+          return "Please introduce a value.";
+        }
+        return true;
+      },
+    },
+  ];
+
+  const { Keyword } = await inquirer.prompt(question);
+  return Keyword;
+};
+
+export const pausa = async () => {
+  const question = [
+    {
+      type: "input",
+      name: "enter",
+      message: `Press ${"enter".green} to continue...`,
+    },
+  ];
+  console.log("\n");
+  await inquirer.prompt(question);
 };
