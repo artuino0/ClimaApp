@@ -1,2 +1,3 @@
 # ClimaApp
- Aplicacion para clima en termina
+Aplicacion de clima en terminal
+
