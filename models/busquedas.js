@@ -10,12 +10,20 @@ export class Busquedas {
   }
 
   getParamsMapbox() {
-    console.log();
     return {
       access_token: process.env.MAPBOX_KEY,
       limit: 5,
       language: "en",
       types: "place",
+    };
+  }
+
+  getParamsOpenWeather(latitud, longitud) {
+    return {
+      lat: latitud,
+      lon: longitud,
+      appid: process.env.OPENWEATHER_KEY,
+      units: "metric",
     };
   }
 
@@ -37,5 +45,26 @@ export class Busquedas {
       return [];
     }
     return []; //return matching cities
+  }
+
+  async getWeather(place) {
+    try {
+      const instance = axios.create({
+        baseURL: "https://api.openweathermap.org/data/2.5/weather?",
+        params: this.getParamsOpenWeather(place.lat, place.lng),
+      });
+
+      const resp = await (await instance.get()).data;
+      const weather = resp.weather[0];
+
+      return {
+        temp: resp.main.temp,
+        temp_min: resp.main.temp_min,
+        temp_max: resp.main.temp_max,
+        desc: weather.description,
+      };
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

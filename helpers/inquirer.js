@@ -72,6 +72,7 @@ export const showCitiesList = async (places = []) => {
       name: `${idx} ${place.place_name}`,
     };
   });
+
   choices.unshift({
     value: 0,
     name: `${"0.".green} Exit`,
