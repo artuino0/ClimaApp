@@ -10,7 +10,7 @@ const preguntas = [
     choices: [
       {
         value: 1,
-        name: `${"1.".green} Get weather by city`,
+        name: `${"1.".green} Get weather by place`,
       },
       {
         value: 2,
@@ -57,7 +57,7 @@ export const pausa = async () => {
     {
       type: "input",
       name: "enter",
-      message: `Press ${"enter".green} to continue...`,
+      message: `Returning to main menu. Press ${"enter".green} to continue...`,
     },
   ];
   console.log("\n");

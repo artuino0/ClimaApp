@@ -1,9 +1,10 @@
 import axios from "axios";
 import * as dotenv from "dotenv";
+import { readDB, writeDB } from "../helpers/dbcontroller.js";
 dotenv.config();
 
 export class Busquedas {
-  historial = ["Tegucigalpa", "Madrid", "San Jose"];
+  historial = [];
 
   constructor() {
     //TODO: read DB if exists
@@ -66,5 +67,17 @@ export class Busquedas {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  async addToHistory(place) {
+    this.historial.unshift(place);
+    if (this.historial.length === 6) {
+      this.historial.pop();
+    }
+    await writeDB(this.historial);
+  }
+
+  async readHistory() {
+    this.historial = await readDB();
   }
 }
