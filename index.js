@@ -1,20 +1,21 @@
 import { inquirerMenu, leerInput, pausa } from "./helpers/inquirer.js";
+import { Busquedas } from "./models/busquedas.js";
 
 const main = async () => {
-  let opcion;
+  let opt;
+  const buscador = new Busquedas();
 
   do {
-    opcion = await inquirerMenu();
-    switch (opcion) {
+    opt = await inquirerMenu();
+    switch (opt) {
       case 1:
         const busqueda = await leerInput();
-        console.log(busqueda);
-        await pausa();
+        await buscador.getCities(busqueda);
         break;
     }
 
-    console.log(opcion);
-  } while (opcion != 0);
+    await pausa();
+  } while (opt !== 0);
 };
 
 main();
