@@ -6,6 +6,8 @@ import {
 } from "./helpers/inquirer.js";
 import { Busquedas } from "./models/busquedas.js";
 
+//Created By Arturo Muñoz
+
 const main = async () => {
   let opt;
   const buscador = new Busquedas();
